@@ -2,7 +2,7 @@
 
 [English](README.md)
 
-CBM Navigator 为 VS Code 提供**轻量级 Java 代码导航，无需安装或运行语言服务器（Language Server）**。它面向 AI 编程场景，用内置的 Tree-sitter 解析器分析正在编辑的文件，再通过 [codebase-memory-mcp](https://github.com/DeusData/codebase-memory-mcp) 维护的本地代码图快速定位实现、调用位置和引用。
+CBM Navigator 为 VS Code 提供**轻量级 Java 代码导航，无需启动重量级语言服务器**。它面向 AI 编程场景，用内置的 Tree-sitter 解析器分析正在编辑的文件，再通过 [codebase-memory-mcp](https://github.com/DeusData/codebase-memory-mcp) 维护的本地代码图快速定位实现、调用位置和引用。
 
 ## 主要功能
 
