@@ -2,7 +2,7 @@
 
 [简体中文](README_CN.md)
 
-CBM Navigator is a lightweight, high-performance code navigation extension for VS Code, built for the AI coding era. It combines editor-aware source analysis with the shared semantic graph maintained by [codebase-memory-mcp](https://github.com/DeusData/codebase-memory-mcp) to deliver fast, precise navigation while keeping the extension lightweight.
+CBM Navigator provides **lightweight Java code navigation in VS Code without a language server**. Built for the AI coding era, it uses a bundled Tree-sitter parser to read the file you're editing and the local code graph maintained by [codebase-memory-mcp](https://github.com/DeusData/codebase-memory-mcp) to jump to implementations, callers, and references.
 
 ## What it does
 

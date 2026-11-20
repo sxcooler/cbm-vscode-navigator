@@ -1,7 +1,7 @@
 {
   "name": "cbm-vscode-navigator",
   "displayName": "CBM Navigator",
-  "description": "Lightweight, high-performance VS Code navigation for the AI coding era, powered by codebase-memory-mcp.",
+  "description": "Lightweight Java code navigation for VS Code, powered by codebase-memory-mcp. No language server required.",
   "version": "0.1.6",
   "publisher": "sxcooler",
   "repository": {
