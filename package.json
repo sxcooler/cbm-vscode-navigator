@@ -1,0 +1,169 @@
+{
+  "name": "cbm-vscode-navigator",
+  "displayName": "CBM Navigator",
+  "description": "Lightweight, high-performance VS Code navigation for the AI coding era, powered by codebase-memory-mcp.",
+  "version": "0.1.6",
+  "publisher": "sxcooler",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sxcooler/cbm-vscode-navigator.git"
+  },
+  "homepage": "https://github.com/sxcooler/cbm-vscode-navigator#readme",
+  "bugs": {
+    "url": "https://github.com/sxcooler/cbm-vscode-navigator/issues"
+  },
+  "license": "MIT",
+  "icon": "images/icon.png",
+  "engines": {
+    "vscode": "^1.135.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Other"
+  ],
+  "main": "./dist/extension.js",
+  "activationEvents": [
+    "onLanguage:java",
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "cbmNavigator.setup",
+        "title": "Set Up CBM",
+        "category": "CBM Navigator"
+      },
+      {
+        "command": "cbmNavigator.upgrade",
+        "title": "Upgrade CBM",
+        "category": "CBM Navigator"
+      },
+      {
+        "command": "cbmNavigator.selectExecutable",
+        "title": "Select CBM Executable",
+        "category": "CBM Navigator"
+      },
+      {
+        "command": "cbmNavigator.indexWorkspace",
+        "title": "Index Current Workspace",
+        "category": "CBM Navigator"
+      },
+      {
+        "command": "cbmNavigator.refreshIndex",
+        "title": "Refresh Current Workspace Index",
+        "category": "CBM Navigator"
+      },
+      {
+        "command": "cbmNavigator.showStatus",
+        "title": "Show Status",
+        "category": "CBM Navigator"
+      },
+      {
+        "command": "cbmNavigator.showLogs",
+        "title": "Show Logs",
+        "category": "CBM Navigator"
+      },
+      {
+        "command": "cbmNavigator.retryConnection",
+        "title": "Connect / Retry Connection",
+        "category": "CBM Navigator"
+      },
+      {
+        "command": "cbmNavigator.goToDeclaration",
+        "title": "Go to Declaration",
+        "category": "CBM Navigator"
+      },
+      {
+        "command": "cbmNavigator.enableIdeaKeymap",
+        "title": "Enable IDEA Keymap",
+        "category": "CBM Navigator"
+      },
+      {
+        "command": "cbmNavigator.disableIdeaKeymap",
+        "title": "Disable IDEA Keymap",
+        "category": "CBM Navigator"
+      }
+    ],
+    "configuration": {
+      "title": "CBM Navigator",
+      "properties": {
+        "cbmNavigator.executablePath": {
+          "type": "string",
+          "default": "",
+          "description": "Explicit path to the codebase-memory-mcp executable."
+        },
+        "cbmNavigator.minimumDirectJumpConfidence": {
+          "type": "number",
+          "default": 0.85,
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Minimum confidence for a silent direct navigation jump."
+        },
+        "cbmNavigator.queryTimeoutMs": {
+          "type": "number",
+          "default": 5000,
+          "minimum": 100,
+          "maximum": 30000,
+          "description": "Timeout for graph navigation requests in milliseconds."
+        },
+        "cbmNavigator.updateCheck.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable low-frequency release metadata checks."
+        },
+        "cbmNavigator.keymap": {
+          "type": "string",
+          "enum": [
+            "vscode",
+            "idea"
+          ],
+          "default": "vscode",
+          "description": "Navigation keymap contributed by CBM Navigator."
+        }
+      }
+    },
+    "keybindings": [
+      {
+        "command": "cbmNavigator.ideaGoToDefinition",
+        "key": "ctrl+b",
+        "mac": "cmd+b",
+        "when": "editorTextFocus && editorLangId == java && config.cbmNavigator.keymap == idea"
+      },
+      {
+        "command": "cbmNavigator.ideaGoToImplementation",
+        "key": "ctrl+alt+b",
+        "mac": "cmd+alt+b",
+        "when": "editorTextFocus && editorLangId == java && config.cbmNavigator.keymap == idea"
+      },
+      {
+        "command": "cbmNavigator.ideaGoToReferences",
+        "key": "alt+f7",
+        "when": "editorTextFocus && editorLangId == java && config.cbmNavigator.keymap == idea"
+      }
+    ]
+  },
+  "scripts": {
+    "check": "tsc --noEmit",
+    "test": "vitest run",
+    "test:contract": "vitest run src/test/contract/cbm.contract.test.ts",
+    "test:integration": "npm run build && node src/test/runIntegration.mjs",
+    "build": "node esbuild.mjs",
+    "package": "npm run build && vsce package --no-dependencies --allow-missing-repository"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.17.4",
+    "web-tree-sitter": "^0.25.10"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.10",
+    "@types/node": "^24.3.0",
+    "@types/vscode": "^1.134.0",
+    "@vscode/test-electron": "^3.1.0",
+    "@vscode/vsce": "^3.6.0",
+    "esbuild": "^0.25.9",
+    "mocha": "^11.8.0",
+    "tree-sitter-java": "^0.23.5",
+    "typescript": "^5.9.2",
+    "vitest": "^3.2.4"
+  }
+}

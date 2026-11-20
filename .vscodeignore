@@ -1,0 +1,17 @@
+.git/**
+.gitignore
+.codebase-memory/**
+.playwright-mcp/**
+src/**
+examples/**
+docs/superpowers/**
+docs/2026-08-26-cbm-vscode-navigator-design.md
+node_modules/**
+coverage/**
+dist/test/**
+**/*.map
+package-lock.json
+vitest.config.ts
+*.vsix
+tsconfig.json
+esbuild.mjs
