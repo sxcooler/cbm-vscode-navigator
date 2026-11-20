@@ -1,7 +1,7 @@
 {
   "name": "cbm-vscode-navigator",
   "displayName": "CBM Navigator",
-  "description": "Lightweight Java code navigation for VS Code, powered by codebase-memory-mcp. No heavyweight language server required.",
+  "description": "Lightweight code navigation for VS Code. Find implementations and callers using a local index without running a full language server.",
   "version": "0.1.6",
   "publisher": "sxcooler",
   "repository": {

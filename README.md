@@ -2,7 +2,7 @@
 
 [简体中文](README_CN.md)
 
-CBM Navigator provides **lightweight Java code navigation in VS Code without starting a heavyweight language server**. Built for the AI coding era, it uses a bundled Tree-sitter parser to read the file you're editing and the local code graph maintained by [codebase-memory-mcp](https://github.com/DeusData/codebase-memory-mcp) to jump to implementations, callers, and references.
+When reading code, you often want to jump from a call to its implementation or go the other way to see where it's called. CBM Navigator is a lightweight VS Code extension that uses the file you're editing and a local code index to make those jumps without running a full language server.
 
 ## What it does
 
@@ -42,9 +42,13 @@ When more than one reliable target exists, CBM Navigator opens VS Code's built-i
 
 ![Peek view showing multiple verified navigation targets](images/peek.png)
 
+## Language support
+
+CBM Navigator currently supports Java.
+
 ## Requirements and setup
 
-CBM Navigator (`sxcooler.cbm-vscode-navigator`) requires VS Code `1.135.0` or newer and codebase-memory-mcp `0.10.8` or newer. The required CBM tools are `index_repository`, `list_projects`, `index_status`, `check_index_coverage`, `search_graph`, `query_graph`, `trace_path`, and `get_graph_schema`.
+CBM Navigator (`sxcooler.cbm-vscode-navigator`) requires VS Code `1.135.0` or newer and [codebase-memory-mcp](https://github.com/DeusData/codebase-memory-mcp) `0.10.8` or newer. The required CBM tools are `index_repository`, `list_projects`, `index_status`, `check_index_coverage`, `search_graph`, `query_graph`, `trace_path`, and `get_graph_schema`.
 
 Download the VSIX from [GitHub Releases](https://github.com/sxcooler/cbm-vscode-navigator/releases/latest), then run **Extensions: Install from VSIX...** in VS Code.
 
@@ -99,7 +103,7 @@ npm run test:integration
 npm run package
 ```
 
-The parser tests and the default integration workspace use the fictional Java project in `examples/java`. Set `CBM_TEST_EXECUTABLE` before `npm run test:contract` to verify a real CBM executable's capabilities. Without an executable, CBM-backed contracts report explicit skips.
+The parser tests and the default integration workspace use the fictional project in `examples/java`. Set `CBM_TEST_EXECUTABLE` before `npm run test:contract` to verify a real CBM executable's capabilities. Without an executable, CBM-backed contracts report explicit skips.
 
 An optional live declaration-family check also accepts `CBM_TEST_WORKSPACE_ROOT`, `CBM_TEST_SYMBOL`, `CBM_TEST_RECEIVER`, `CBM_TEST_ARITY`, `CBM_TEST_DECLARATION_FILE`, and the one-based `CBM_TEST_DECLARATION_LINE`. Keep project-specific values in the environment.
 
@@ -107,4 +111,4 @@ For publisher setup and release steps, see the [VS Code Marketplace publishing g
 
 ## Known limitations
 
-CBM Navigator currently supports Java project source only. Completion, diagnostics, refactoring, formatting, debugging, navigation into dependency or JDK source, and cross-file semantics for multiple unsaved documents are outside its current scope. Reference results may be incomplete when CBM lacks verifiable occurrence data.
+Navigation is limited to project source. Completion, diagnostics, refactoring, formatting, debugging, navigation into dependency or JDK source, and cross-file semantics for multiple unsaved documents are outside its current scope. Reference results may be incomplete when CBM lacks verifiable occurrence data.

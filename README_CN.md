@@ -2,7 +2,7 @@
 
 [English](README.md)
 
-CBM Navigator 为 VS Code 提供**轻量级 Java 代码导航，无需启动重量级语言服务器**。它面向 AI 编程场景，用内置的 Tree-sitter 解析器分析正在编辑的文件，再通过 [codebase-memory-mcp](https://github.com/DeusData/codebase-memory-mcp) 维护的本地代码图快速定位实现、调用位置和引用。
+读代码时，常常需要从调用处跳到实现，或者反过来看看哪些地方调用了它。CBM Navigator 是一款轻量的 VS Code 插件，它结合当前文件和本地代码索引完成这些跳转，省去了启动完整语言服务的开销。
 
 ## 主要功能
 
@@ -42,9 +42,13 @@ CodeLens 在支持的符号上方提供已验证的声明、实现、调用位�
 
 ![Peek 预览窗口显示多个已验证的导航目标](images/peek.png)
 
+## 语言支持
+
+目前支持 Java。
+
 ## 环境要求与配置
 
-CBM Navigator（`sxcooler.cbm-vscode-navigator`）要求 VS Code `1.135.0` 或更高版本，以及 codebase-memory-mcp `0.10.8` 或更高版本。CBM 需要提供 `index_repository`、`list_projects`、`index_status`、`check_index_coverage`、`search_graph`、`query_graph`、`trace_path` 和 `get_graph_schema` 工具。
+CBM Navigator（`sxcooler.cbm-vscode-navigator`）要求 VS Code `1.135.0` 或更高版本，以及 [codebase-memory-mcp](https://github.com/DeusData/codebase-memory-mcp) `0.10.8` 或更高版本。CBM 需要提供 `index_repository`、`list_projects`、`index_status`、`check_index_coverage`、`search_graph`、`query_graph`、`trace_path` 和 `get_graph_schema` 工具。
 
 从 [GitHub Releases](https://github.com/sxcooler/cbm-vscode-navigator/releases/latest) 下载 VSIX，然后在 VS Code 中执行 **Extensions: Install from VSIX...**（从 VSIX 安装）。
 
@@ -99,7 +103,7 @@ npm run test:integration
 npm run package
 ```
 
-解析器测试和默认的集成测试工作区使用 `examples/java` 中的虚构 Java 项目。运行 `npm run test:contract` 前设置 `CBM_TEST_EXECUTABLE`，即可使用真实的 CBM 可执行文件验证其能力。如果未提供可执行文件，测试会明确标记依赖 CBM 的契约用例为跳过。
+解析器测试和默认的集成测试工作区使用 `examples/java` 中的虚构项目。运行 `npm run test:contract` 前设置 `CBM_TEST_EXECUTABLE`，即可使用真实的 CBM 可执行文件验证其能力。如果未提供可执行文件，测试会明确标记依赖 CBM 的契约用例为跳过。
 
 在已建立索引的工作区中，还可以用 `CBM_TEST_WORKSPACE_ROOT`、`CBM_TEST_SYMBOL`、`CBM_TEST_RECEIVER`、`CBM_TEST_ARITY`、`CBM_TEST_DECLARATION_FILE` 和从 1 开始计数的 `CBM_TEST_DECLARATION_LINE` 检查一组相关声明及其调用位置。请通过环境变量传入项目相关参数。
 
@@ -107,4 +111,4 @@ npm run package
 
 ## 已知限制
 
-CBM Navigator 目前只支持 Java 项目源码。代码补全、诊断、重构、格式化、调试、跳转到依赖或 JDK 源码，以及结合多份未保存文档分析跨文件语义，均不在当前功能范围内。CBM 缺少可验证的引用位置时，引用结果可能不完整。
+导航范围为项目源码。代码补全、诊断、重构、格式化、调试、跳转到依赖或 JDK 源码，以及结合多份未保存文档分析跨文件语义，均不在当前功能范围内。CBM 缺少可验证的引用位置时，引用结果可能不完整。
